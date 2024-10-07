@@ -1,0 +1,60 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A bubble plot showing the correlation between health and income for 187 countries in the world (modified from an example in Lisa Charlotte Rost's blog post 'One Chart, Twelve Charting Libraries' --http://lisacharlotterost.github.io/2016/05/17/one-chart-code/).",
+    "width": 500,"height": 300,
+    "title": "Anxiety disorders vs GDP per capita",
+    "data": {
+      "url": "new_combined.csv"
+    },
+    "params": [{
+      "name": "view",
+      "select": "interval",
+      "bind": "scales"
+    }],
+    "transform": [
+      {
+        "filter": "datum['GDP per capita'] > 0 && datum['Anxiety disorders (%)'] != null"
+      }
+    ],
+    "selection": {
+"continent_highlight": {
+"type": "multi",
+"fields": ["Continent"],
+"bind": "legend"
+}
+},
+    "mark": "circle",
+    "encoding": {
+      "y": {
+        "field": "Anxiety disorders (%)",
+        "type": "quantitative",
+        "scale": {"zero": false},
+        "axis": {"minExtent": 30}
+      },
+      "x": {
+        "field": "GDP per capita",
+        "scale": {"type": "log"}
+      },"opacity": {
+"condition": {"selection": "continent_highlight", "value": 0.6},
+"value": 0
+},
+      "size": {"field": "Population", "type": "quantitative",
+      "scale": {
+"type": "threshold",
+"domain": [1000000, 10000000, 50000000, 100000000, 500000000],
+"range": [10, 50, 150, 200, 300, 400]
+},"legend": {"format": ".1s"}},
+      "color": {
+      "field": "Continent",  
+      "type": "nominal",  
+      "scale": {"scheme": "category20"}, 
+      "legend": {"title": "Country"}
+    },
+    "tooltip": [
+{"field": "Entity", "type": "nominal"},
+{"field": "GDP per capita", "type": "quantitative", "format": ","},
+{"field": "Population", "type": "quantitative", "format": ","},
+{"field": "Anxiety disorders (%)", "type": "quantitative"}
+]
+    }
+  }
