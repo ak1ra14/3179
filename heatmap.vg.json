@@ -1,0 +1,69 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "How do people attempt to cope with mental health disorders in Asia?",
+  "width": 600,
+  "height": 400,
+  "background": "#f3f1e7",
+  "data": {
+    "url": "new_combined.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    {
+      "fold": [
+        "religious/spiritual activities",
+        "healthy lifestyle behaviors",
+        "work situation,personal relationships",
+        "Talked to friends or family",
+        "Took prescribed medication",
+        "in nature",
+        "mental health_professional"
+      ],
+      "as": ["Disorder", "Prevalence"]
+    },
+    {
+      "filter": {
+        "field": "Entity",
+        "oneOf": [  
+          "Albania", "Bahrain", "Bangladesh", "China", "Cyprus",
+          "Georgia", "India", "Indonesia", "Iran", "Iraq",
+          "Jordan", "Kazakhstan", 
+          "Kyrgyzstan", "Laos", "Lebanon", "Malaysia",
+          "Mongolia", "Myanmar", "Nepal",  "Philippines", "Saudi Arabia", "South Korea",
+          "Sri Lanka", "Thailand", "Timor-Leste",
+           "United Arab Emirates", "Uzbekistan",
+          "Vietnam"
+        ]
+      }
+    }
+  ],
+  "mark": "rect",
+  "encoding": {
+    "x": {
+      "field": "Entity",
+      "type": "nominal",
+      "title": "Country",
+      "sort": "ascending"
+    },
+    "y": {
+      "field": "Disorder",
+      "type": "nominal",
+      "title": "Mental Health Disorder",
+      "sort": "ascending"
+    },
+    "color": {
+      "field": "Prevalence",
+      "type": "quantitative",
+      "scale": {
+        "domain": [0, 100], 
+        "scheme": "blues"
+      },
+      "title": "Prevalence (%)"
+    },
+    "tooltip": [
+      {"field": "Entity", "type": "nominal", "title": "Country"},
+      {"field": "Disorder", "type": "nominal", "title": "Mental Health Disorder"},
+      {"field": "Prevalence", "type": "quantitative", "title": "Prevalence (%)"}
+    ]
+  }
+}

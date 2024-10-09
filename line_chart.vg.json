@@ -1,0 +1,71 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Prevalence of Mental Disorders Over the Years",
+    "width": 800,
+    "height": 400,
+    "params": [
+      {
+        "name": "selectedCountry",
+        "value": "Afghanistan",  
+        "bind": {
+          "input": "select",
+          "options": [
+            "Afghanistan",
+            "Malaysia",
+            "India",
+            "Pakistan",
+            "Bangladesh",
+            "Nepal",
+            "Sri Lanka",
+            "Vietnam",
+            "Thailand",
+            "Philippines"
+          ]
+        }
+      }
+    ],
+    "data": {
+      "url": "Mental health Depression disorder Data.csv",  
+      "format": {"type": "csv"}
+    },
+    "transform": [
+      {
+        "filter": "datum.Entity == selectedCountry" 
+      },
+      {
+        "fold": [
+          "Schizophrenia (%)",
+          "Bipolar disorder (%)",
+          "Eating disorders (%)",
+          "Anxiety disorders (%)",
+          "Drug use disorders (%)",
+          "Depression (%)",
+          "Alcohol use disorders (%)"
+        ],
+        "as": ["Disorder", "Prevalence"]
+      }
+    ],
+    "mark": "line",
+    "encoding": {
+      "x": {
+        "field": "Year",
+        "type": "temporal",
+        "title": "Year"
+      },
+      "y": {
+        "field": "Prevalence",
+        "type": "quantitative",
+        "title": "Prevalence (%)"
+      },
+      "color": {
+        "field": "Disorder",
+        "type": "nominal",
+        "legend": {"title": "Mental Disorder"}
+      },
+      "tooltip": [
+        {"field": "Year", "type": "temporal", "title": "Year"},
+        {"field": "Disorder", "type": "nominal", "title": "Mental Disorder"},
+        {"field": "Prevalence", "type": "quantitative", "title": "Prevalence (%)"}
+      ]
+    }
+  }

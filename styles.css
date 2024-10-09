@@ -1,0 +1,32 @@
+.subheader {
+    margin-top: 5px;
+    font-style: italic;
+}
+header {
+    background-color: white;
+    padding: 20px;
+    opacity: 0.5;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+main {
+    font-family: 'Helvetica Neue', sans-serif;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 20px;
+}
+body, html {
+    margin: 0; /* Remove default margin */
+    height: auto; /* Set height to 100% to allow the main element to fill the viewport */
+}
+.page {
+    width: 850px;
+    height: auto;
+    height: 1900px;
+    background-color: #f3f1e7;
+    margin: auto;
+    padding: 50px;
+    text-align: justify;
+    padding-top: 35px;
+}
