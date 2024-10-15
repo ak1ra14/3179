@@ -2,28 +2,62 @@
     margin-top: 5px;
     font-style: italic;
 }
+
 header {
     background-color: white;
     padding: 20px;
-    opacity: 0.5;
+    border-radius: 8px;
+    font-family: "bodoni";
+    opacity: 0.8;
+    display: fixed;
+    color: black;
     text-align: center;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+.chart {
+    width: 100%;
+    padding: 10px;
+    background-color: #f8f8f3; 
+    border-radius: 10px; 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+.text-box-left {
+    margin-right: 20px;
+    margin-left: 0;
+}
+
+.text-box {
+    padding: 20px;
+    background-color: #f8f8f3;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 main {
     font-family: 'Helvetica Neue', sans-serif;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 20px;
 }
-body, html {
-    margin: 0; /* Remove default margin */
-    height: auto; /* Set height to 100% to allow the main element to fill the viewport */
+body {
+    background-color: #f3f1e7; 
+    font-family: Arial, sans-serif; /* Font styling */
+    margin: 0; 
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
 }
+.container {
+ 
+    justify-content: space-between;
+    width: 80%;
+    margin: 20px 0;
+}
+
 .page {
     width: 850px;
-    height: auto;
-    height: 1900px;
+    height: 2300px;
     background-color: #f3f1e7;
     margin: auto;
     padding: 50px;

@@ -27,38 +27,72 @@
     <div class="page">  
         <header>
             <h1>Global Mental Health Trend</h1>
-            <h2 class="subheader">Unveiling Minds: A Visual Journey Through Mental Health Data</h2>
-        </header>
-        <main>
-        <div ><p>Mental health issues have become increasingly prevalent, with approximately <b>1 in 5 adults</b>
+            <h2 class="subheader" >Unveiling Minds: A Visual Journey Through Mental Health Data</h2>
+            <h3 class="subheader">By: Akira Sato &nbsp; &nbsp;&nbsp;&nbsp;  Student ID:33555052 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date:14th Oct 2024</h3>
+       </header>
+            <main>
+        <div>
+            <p style="margin:20px;">Mental health issues have become increasingly prevalent, with approximately <b>1 in 5 adults</b>
             experiencing a mental health condition each year. Anxiety and depression are among the most 
             common disorders, affecting millions globally. Recent studies indicate that over <b>264 million
             people suffer from depression</b>, while anxiety disorders impact around 284 million individuals. 
             The COVID-19 pandemic has further exacerbated these challenges, highlighting the urgent need for 
             awareness and improved access to mental health resources and support systems.</p></div>
-        <div id="choro"></div>
-        <div class="pure-g" >
-            <div class="pure-u-1-2" style="width: 40%;">
-                <h2 id="subhead">Wealth and Mental Health</h2>
-                <p >The dashboard reveals intriguing patterns between GDP per capita and the prevalence of anxiety 
-                disorders across different countries. While it&#39s often assumed that higher GDP correlates with 
+        <div cass="container">
+            <div class="chart" id="choro"></div>
+        </div>
+
+        <div class="container" style="display: flex; width: 100%;">
+            <!-- Text section -->
+            <div class="text-box" style="width: 50%; margin-right:30px;">
+              <h3 id="subhead" style="margin-top: 0px;">Wealth and Mental Health</h3>
+              <p>
+                The dashboard reveals intriguing patterns between GDP per capita and the prevalence of anxiety 
+                disorders across different countries. While it&#39;s often assumed that higher GDP correlates with 
                 lower rates of mental health disorders due to better access to healthcare, the data suggests a 
                 more nuanced story. Some wealthier nations still report substantial levels of anxiety, challenging 
                 the notion that economic success alone leads to better mental health outcomes. On the other hand, 
                 certain countries with lower GDP exhibit surprisingly lower anxiety rates, suggesting the influence 
-                of other factors like cultural attitudes or community support.</p>
-            </div>
-        <div class="pure-u-1-2" id="bubble"></div>
+                of other factors like cultural attitudes or community support.
+              </p>
+            </div>   
+          
+            <!-- Chart section -->
+            <div class="chart" id="bubble" style="width: 50%; min-height: 300px;">
         </div>
-            <div id="heatmap"></div>
-        <div class="'pure-g">
-            <div class="pure-u-1-3" style="width: 25%;">
-                <h3>Distribution of mental disorders</h3>
-                <p>Depression and anxiety disorder seems to be the two most common mental disorders</p>
-            </div>
-            <div class="pure-u-1-3" id="donut_my" style="margin-right: 30px;"></div>
-            <div class="pure-u-1-3" id="donut" ></div>
         </div>
+
+        <div class="container" style="width:98%;">
+        <div class="chart">
+                <h3 style="text-align: center;"> How do people attempt to cope with mental health disorders?</h3>
+                    <div id="heatmap" style="margin-left:30px; margin-top:20px;">
+        </div>
+        </div>
+            </div>
+            <div class="pure-g container" style="display: flex; width: 100%;">
+                <div class="pure-u-1-2 chart" id="area_chart" style="flex: 1; margin-right:20px;"></div> 
+                <div class="pure-u-1-2 text-box" style="flex: 1; padding-left: 20px;">
+                    <h3 style="margin-top: 0px;">Trends Over Time</h3>
+                    <p>The chart shows a consistent prevalence of anxiety and depression as the two dominant mental health disorders from 2000 to 2017. Anxiety disorders, in particular, occupy the largest proportion. This suggests a persistent mental health burden, while other disorders like schizophrenia and bipolar disorder remain relatively stable throughout the years.</p>
+                </div>
+            </div>
+            <div class="pure-g chart " style="width:98%; margin-top:20px;">
+                <div class="pure-u-1-3" style="margin-left:10px;width: 25%;">
+                    <h3 style="margin-top:10px">Distribution of mental disorders</h3>
+                    <p>Depression and anxiety disorders seem to be the two most common mental health conditions, each affecting around 4% of the population. Let&#39s compare these results with other countries.”</p>
+                </div>
+                <div class="pure-u-1-3" id="donut_my" style=" margin-top:10px;margin-left:45px;"></div>
+                <div class="pure-u-1-3" id="donut" style="margin-top:10px;" ></div>
+                </div>  
+            </div>  
+            <div class="container"style="margin-top:20px; text-align:center">
+                <h3 style="text-align: center;">Data Sources</h3>                    
+                <a href="https://ourworldindata.org/mental-health">Our World in Data - Mental Health</a><br>
+                    <a href="https://www.kaggle.com/datasets/thedevastator/uncover-global-trends-in-mental-health-disorder">Kaggle - Global Trends in Mental Health Disorder</a><br>
+                    <a href="https://data.worldbank.org/">World Bank Open Data</a>
+            </div>
+                
+  
         </main>
     </div>
 </body>

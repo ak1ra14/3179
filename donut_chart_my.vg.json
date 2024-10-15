@@ -2,9 +2,9 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "description": "A donut chart showing the percentage distribution of mental health disorders in a selected Asian country.",
     "title": "In Malaysia",
-    "width": 100,
+    "width": 70,
     "height": 150,
-    "background": "#f3f1e7",
+    "background": "#f8f8f3",
 
     "data": {
       "url": "new_combined.csv",

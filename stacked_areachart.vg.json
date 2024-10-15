@@ -1,0 +1,70 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Combined stacked area chart and donut chart with a shared country filter.",
+  "background": "#f8f8f3",
+  "params": [
+    {
+      "name": "SelectedCountry",  
+      "value": "Malaysia", 
+      "bind": {
+        "input": "select",  
+        "options": ["Malaysia", "Singapore", "Thailand", "Indonesia"], 
+        "name": "Select a country"
+      }
+    }
+  ],
+  "vconcat": [
+    {
+      "width": 330,
+      "height": 250,
+      "background": "#f3f1e7",
+      "title": "Mental Health Disorders Over the Years",
+      "data": {
+        "url": "Mental health Depression disorder Data.csv",
+        "format": {"type": "csv"}
+      },
+      "transform": [
+        {
+          "filter": "datum.Entity === SelectedCountry && datum.Year >= 2000"
+        },
+        {
+          "fold": [
+            "Schizophrenia (%)", 
+            "Bipolar disorder (%)", 
+            "Eating disorders (%)", 
+            "Anxiety disorders (%)", 
+            "Drug use disorders (%)", 
+            "Depression (%)", 
+            "Alcohol use disorders (%)"
+          ],
+          "as": ["Disorder", "value"]
+        }
+      ],
+      "mark": "area",
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "ordinal", 
+          "axis": {"title": "Year"},
+          "sort": "ascending"
+        },
+        "y": {
+          "aggregate": "sum",
+          "field": "value",
+          "type": "quantitative",
+          "axis": {"title": "Percentage (%)"}
+        },
+        "color": {
+          "field": "Disorder",
+          "type": "nominal",
+          "legend": {"title": "Mental Health Disorder"}
+        },
+        "tooltip": [
+          {"field": "Entity", "type": "nominal", "title": "Country"},
+          {"field": "Disorder", "type": "nominal", "title": "Disorder"},
+          {"field": "value", "type": "quantitative", "title": "Percentage (%)"}
+        ]
+      }
+    }
+  ]
+}

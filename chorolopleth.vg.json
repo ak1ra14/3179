@@ -3,13 +3,14 @@
   "title": "Prevalence of Mental Disorders in 2017",
   "width": 700,
   "height": 400,
-  "background": "#f3f1e7",
-
-  "projection": {"type": "equalEarth"},
+  "background": "#f8f8f3",
+  "projection": {
+    "type": "equalEarth"
+  },
   "params": [
     {
       "name": "selectedDisorder",
-      "value": "Depression (%)", 
+      "value": "Depression (%)",
       "bind": {
         "input": "select",
         "options": [
@@ -19,44 +20,153 @@
         ],
         "name": "Select a Disorder"
       }
-
     }
   ],
-  "data": {
-    "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
-    "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
-  },
-  "transform": [
+  "layer": [
     {
-      "lookup": "properties.NAME",
-      "from": {
-        "data": {
-          "url": "new_combined.csv",  
-          "format": {"type": "csv"}
+      "data": {
+        "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/7_others/oceans.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "oceans"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "skyblue"
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/WorldMapWithGraticules.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "ne_110m_graticules_30"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "stroke": "lightgrey",
+        "strokeWidth": 1,
+        "fill": null
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/samwzlim/FIT3179/main/visualisation2/js/ne_110m.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "ne_110m_admin_0_countries"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "properties.NAME",
+          "from": {
+            "data": {
+              "url": "new_combined.csv",
+              "format": {
+                "type": "csv"
+              }
+            },
+            "key": "Entity",
+            "fields": [
+              "Eating disorders (%)",
+              "Schizophrenia (%)",
+              "Bipolar disorder (%)",
+              "Anxiety disorders (%)",
+              "Drug use disorders (%)",
+              "Depression (%)",
+              "Alcohol use disorders (%)"
+            ]
+          }
         },
-        "key": "Entity",
-        "fields": ["Eating disorders (%)", "Schizophrenia (%)", "Bipolar disorder (%)", "Anxiety disorders (%)", "Drug use disorders (%)", "Depression (%)", "Alcohol use disorders (%)"]
+        {
+          "calculate": "datum[selectedDisorder]",
+          "as": "disorderValue"
+        }
+      ],
+      "mark": {
+        "type": "geoshape"
+      },
+      "encoding": {
+        "color": {
+          "condition": {
+            "test": "datum.disorderValue == null",
+            "value": "#f0f0f0"},
+          "field": "disorderValue",
+          "title": "Prevalence (%)",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 5],
+            "scheme": "reds"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "properties.NAME",
+            "type": "nominal",
+            "title": "Country"
+          },
+          {
+            "condition": {
+              "test": "datum.disorderValue == null",
+              "value": "No data"
+            },
+            "field": "disorderValue",
+            "type": "quantitative",
+            "title": "Prevalence"
+          }
+        ]
       }
     },
     {
-      "calculate": "datum[selectedDisorder]",  
-      "as": "disorderValue"
-    }
-  ],
-  "mark": {"type": "geoshape"},
-  "encoding": {
-    "color": {
-      "field": "disorderValue",
-      "title": "Prevalence (%)",
-      "type": "quantitative",
-      "scale": {
-        "domain": [0, 5],  
-        "scheme": "blues"  
+      "data": {
+        "values": [
+          {
+            "longitude": -98.5,
+            "latitude": 39.8,
+            "text": "United States"
+          },
+          {
+            "longitude": 104,
+            "latitude": 35,
+            "text": "China"
+          }, 
+          {
+            "longitude": 109,
+            "latitude": 4,
+            "text": "Malaysia"
+          },
+          {
+            "longitude": 133,
+            "latitude": -27,
+            "text": "Australia"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontStyle": "italic",
+        "fontSize": 12,    
+        "align": "left",   
+        "color": "white",  
+        "dy": -10          
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text",
+          "type": "nominal"
+        }
       }
-    },
-    "tooltip": [
-      {"field": "properties.NAME", "type": "nominal", "title": "Country"},
-      {"field": "disorderValue", "type": "quantitative", "title": "Prevalence"}
-    ]
-  }
+    }
+  ]
 }

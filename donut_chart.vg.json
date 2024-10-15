@@ -1,10 +1,10 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "A donut chart showing the percentage distribution of mental health disorders in a selected Asian country.",
-  "width": 125,
+  "width": 90,
   "height": 150,
   "title": "In Selected Asian Country",
-  "background": "#f3f1e7",
+  "background": "#f8f8f3",
 
   "data": {
     "url": "new_combined.csv",
@@ -12,25 +12,18 @@
   },
   "params": [
     {
-      "name": "Country",
-      "value": "Singapore",  
+      "name": "SelectedCountry",  
+      "value": "Singapore", 
       "bind": {
-        "input": "select",
-        "options": [
-          "Afghanistan",
-          "Malaysia",
-          "Japan",
-          "South Korea",
-          "India",
-          "Thailand",
-          "Vietnam"
-        ]
+        "input": "select",  
+        "options": ["China","Australia", "India","Singapore", "Thailand", "Indonesia"], 
+        "name": "Select a country"  
       }
     }
   ],
   "transform": [
     {
-      "filter": "datum.Entity == Country"  
+      "filter": "datum.Entity == SelectedCountry"  
     },
     {
       "fold": [
@@ -59,8 +52,7 @@
     "color": {
       "field": "Disorder",
       "type": "nominal",
-      "legend": {"title": "Mental Health Disorder"}
-    },
+      "legend": null},
     "tooltip": [
       {"field": "Disorder", "type": "nominal", "title": "Disorder"},
       {"field": "value", "type": "quantitative", "title": "Percentage (%)"}

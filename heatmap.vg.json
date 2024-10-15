@@ -1,9 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "How do people attempt to cope with mental health disorders in Asia?",
-  "width": 600,
-  "height": 400,
-  "background": "#f3f1e7",
+  "width": 450,
+  "height": 200,
+  "background": "#f8f8f3",
   "data": {
     "url": "new_combined.csv",
     "format": {"type": "csv"}
@@ -19,7 +18,7 @@
         "in nature",
         "mental health_professional"
       ],
-      "as": ["Disorder", "Prevalence"]
+      "as": ["CopingMethod", "Prevalence"]
     },
     {
       "filter": {
@@ -31,10 +30,29 @@
           "Kyrgyzstan", "Laos", "Lebanon", "Malaysia",
           "Mongolia", "Myanmar", "Nepal",  "Philippines", "Saudi Arabia", "South Korea",
           "Sri Lanka", "Thailand", "Timor-Leste",
-           "United Arab Emirates", "Uzbekistan",
+          "United Arab Emirates", "Uzbekistan",
           "Vietnam"
         ]
       }
+    },
+    {
+      "lookup": "CopingMethod",
+      "from": {
+        "data": {
+          "values": [
+            {"original": "religious/spiritual activities", "renamed": "Involved in spiritual activities"},
+            {"original": "healthy lifestyle behaviors", "renamed": "Engaged in healthy lifestyle"},
+            {"original": "work situation,personal relationships", "renamed": "Improved work situation or personal relationships"},
+            {"original": "Talked to friends or family", "renamed": "Talked to friends or family"},
+            {"original": "Took prescribed medication", "renamed": "Took prescribed medication"},
+            {"original": "in nature", "renamed": "Spent time in nature"},
+            {"original": "mental health_professional", "renamed": "Sought help from a mental health professional"}
+          ]
+        },
+        "key": "original",
+        "fields": ["renamed"]
+      },
+      "as": "RenamedCopingMethod"
     }
   ],
   "mark": "rect",
@@ -46,9 +64,9 @@
       "sort": "ascending"
     },
     "y": {
-      "field": "Disorder",
+      "field": "RenamedCopingMethod",
       "type": "nominal",
-      "title": "Mental Health Disorder",
+      "title": "Coping Method",
       "sort": "ascending"
     },
     "color": {
@@ -62,7 +80,7 @@
     },
     "tooltip": [
       {"field": "Entity", "type": "nominal", "title": "Country"},
-      {"field": "Disorder", "type": "nominal", "title": "Mental Health Disorder"},
+      {"field": "RenamedCopingMethod", "type": "nominal", "title": "Coping Method"},
       {"field": "Prevalence", "type": "quantitative", "title": "Prevalence (%)"}
     ]
   }
